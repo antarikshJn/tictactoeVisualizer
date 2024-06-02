@@ -3,7 +3,7 @@
 //     const BoardChildObj = {
 //         record: {
 //             board: structuredClone(newBoard),
-//             Children: []
+//             children: []
 //         },
 //         bestMove: {}
 //     }
@@ -31,11 +31,11 @@
 
 //         if (player === "O") {
 //             var result = minimax(structuredClone(newBoard), "X");
-//             BoardChildObj.record.Children.push(result.record);
+//             BoardChildObj.record.children.push(result.record);
 //             move.score = result.bestMove.score;
 //         } else {
 //             var result = minimax(structuredClone(newBoard), "O");
-//             BoardChildObj.record.Children.push(result.record);
+//             BoardChildObj.record.children.push(result.record);
 //             move.score = result.bestMove.score;
 //         }
 
@@ -76,8 +76,8 @@ export const minimax = (newBoard, player, movesCount, memo) => {
     const BoardChildObj = {
         record: {
             board: structuredClone(newBoard),
-            Children: [],
-            key: key
+            children: [],
+            name: key
         },
         bestMove: {},
     }
@@ -105,11 +105,11 @@ export const minimax = (newBoard, player, movesCount, memo) => {
 
         if (player === "O") {
             var result = minimax(structuredClone(newBoard), "X", movesCount, memo);
-            BoardChildObj.record.Children.push(result.record);
+            BoardChildObj.record.children.push(result.record);
             move.score = result.bestMove.score;
         } else {
             var result = minimax(structuredClone(newBoard), "O", movesCount, memo);
-            BoardChildObj.record.Children.push(result.record);
+            BoardChildObj.record.children.push(result.record);
             move.score = result.bestMove.score;
         }
 
@@ -226,7 +226,7 @@ export const simulator = (boardTree) => {
         const board = document.querySelector(`[data-string="${boardId}"]`)
         console.log(board);
         board.classList.add("active");
-        boardTree.Children.map(nextBoard => {
+        boardTree.children.map(nextBoard => {
             simulator(nextBoard);
         })
     }

@@ -3,6 +3,7 @@ import "./Board.css";
 import { ImCross, ImRadioUnchecked } from "react-icons/im";
 import { minimax, checkWin, drawFig, simulator } from "./Board.helper";
 import BoardTree from '../BoardTree';
+import Tree from 'react-d3-tree';
 
 const Board = () => {
     const [board, setBoard] = useState(new Array(3).fill(new Array(3).fill(null)));
@@ -42,6 +43,42 @@ const Board = () => {
         simulator(process.record);
     }
 
+    const orgChart = {
+        name: 'CEO',
+        children: [
+            {
+                name: 'Manager',
+                attributes: {
+                    department: 'Production',
+                },
+                children: [
+                    {
+                        name: 'Foreman',
+                        attributes: {
+                            department: 'Fabrication',
+                        },
+                        children: [
+                            {
+                                name: 'Worker',
+                            },
+                        ],
+                    },
+                    {
+                        name: 'Foreman',
+                        attributes: {
+                            department: 'Assembly',
+                        },
+                        children: [
+                            {
+                                name: 'Worker',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    };
+
     return (
         <div>
             {board.map((row, rowIndex) => {
@@ -64,9 +101,11 @@ const Board = () => {
             })}
             <h2>Status : {winner}</h2>
             <button onClick={onClickButtonHandler}>Simullate</button>
-            <div style={{ width: "fit-content", height: "fit-content" }}>
-                {movesCount.current > 3 ? <BoardTree treeData={process.record} /> : <></>}
+            <div style={{ width: "100vw", height: "100vh", background: "lightGray" }}>
+                {movesCount.current >= 5 ? <Tree data={process.record} orientation='vertical' /> : <></>}
+                {/* {movesCount.current > 3 ? <BoardTree treeData={process.record} /> : <></>} */}
             </div>
+
         </div>
     )
 }
