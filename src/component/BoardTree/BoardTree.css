@@ -1,0 +1,21 @@
+.boardParent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* justify-content: center; */
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.childBoard {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    /* align-items: center; */
+    border-collapse: collapse;
+}
+
+.board.active {
+    /* display: unset !important; */
+    background-color: red;
+}
