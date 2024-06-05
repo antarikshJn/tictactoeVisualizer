@@ -6,7 +6,7 @@ import "./BoardTree.css";
 const BoardTree = ({ treeData }) => {
     return (
         <div className='boardParent'>
-            <div className='board' data-string={treeData.key}>
+            <div className='board' data-string={treeData?.key}>
                 {treeData?.board.map(row => {
                     return (
                         <div className='row'>
@@ -18,13 +18,14 @@ const BoardTree = ({ treeData }) => {
                 })}
             </div>
             <FaArrowDownLong />
-            <div className='childBoard'>
-                {treeData?.Children.map(board => {
+            {treeData.memo ? <div>Memoized!</div> : <div className='childBoard'>
+                {treeData?.Children?.map(board => {
                     return (
                         <BoardTree treeData={board} />
                     )
                 })}
-            </div>
+            </div>}
+
         </div>
     )
 }

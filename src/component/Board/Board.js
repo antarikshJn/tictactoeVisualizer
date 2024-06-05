@@ -3,6 +3,7 @@ import "./Board.css";
 import { ImCross, ImRadioUnchecked } from "react-icons/im";
 import { minimax, checkWin, drawFig, simulator } from "./Board.helper";
 import BoardTree from '../BoardTree';
+import MemoizedSideDisplay from './MemoizedSideDisplay';
 
 const Board = () => {
     const [board, setBoard] = useState(new Array(3).fill(new Array(3).fill(null)));
@@ -10,16 +11,17 @@ const Board = () => {
     const [winner, setWinner] = useState("Pending!")
     const movesCount = useRef(0);
     const [process, setPRocess] = useState([]);
+    const [memo, setMemo] = useState({});
 
     useEffect(() => {
         movesCount.current = movesCount.current + 1;
         let winner = checkWin(board);
         if (!winner && movesCount.current <= 9 && turn === "O") {
             const newBoard = structuredClone(board);
-            let memo = {}
-            let bestcinerio = minimax(newBoard, "O", movesCount.current, memo);
-            console.log(Object.keys(memo).length)
-            console.log(bestcinerio);
+            let tempMemo = {}
+            let bestcinerio = minimax(newBoard, "O", movesCount.current, tempMemo);
+            // console.log(tempMemo);
+            setMemo(tempMemo);
             setPRocess(bestcinerio);
             drawFig(bestcinerio.bestMove.index[0], bestcinerio.bestMove.index[1], board, turn, setTurn, setBoard);
         }
@@ -65,10 +67,11 @@ const Board = () => {
             <h2>Status : {winner}</h2>
             <button onClick={onClickButtonHandler}>Simullate</button>
             <div style={{ width: "fit-content", height: "fit-content" }}>
-                {movesCount.current > 3 ? <BoardTree treeData={process.record} /> : <></>}
+                {/* <MemoizedSideDisplay data={memo} /> */}
+                {movesCount.current > 1 ? <BoardTree treeData={process.record} /> : <></>}
             </div>
         </div>
     )
 }
 
-export default Board
+export default Board;

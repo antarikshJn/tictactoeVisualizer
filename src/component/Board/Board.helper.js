@@ -70,16 +70,25 @@ export const minimax = (newBoard, player, movesCount, memo) => {
     let key = createKey(newBoard, player);
 
     if (memo[key]) {
-        return memo[key];
+        const returnObj = {
+            record: {
+                board: memo[key].record.board,
+                memo: true,
+                key: key,
+            },
+            bestMove: memo[key].bestMove,
+        }
+        return returnObj;
     }
 
     const BoardChildObj = {
         record: {
             board: structuredClone(newBoard),
             Children: [],
-            key: key
+            key: key,
         },
         bestMove: {},
+        memo: false,
     }
 
     var availSpots = emptySquares(newBoard);
@@ -137,11 +146,6 @@ export const minimax = (newBoard, player, movesCount, memo) => {
         }
     }
     BoardChildObj.bestMove = moves[bestMove];
-    // memo[key] = {
-    //     memo: true,
-    //     bestMove: moves[bestMove]
-    // }
-    // return BoardChildObj;
     return memo[key] = BoardChildObj;
 }
 
@@ -224,7 +228,7 @@ export const simulator = (boardTree) => {
 
     if (boardId) {
         const board = document.querySelector(`[data-string="${boardId}"]`)
-        console.log(board);
+        // console.log(board);
         board.classList.add("active");
         boardTree.Children.map(nextBoard => {
             simulator(nextBoard);
