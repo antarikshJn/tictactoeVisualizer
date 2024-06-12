@@ -1,16 +1,9 @@
 import React from 'react';
+import "./MemoizedSideDisplay.css";
 
 const MemoizedSideDisplay = ({ data }) => {
-    const keys = Object.keys(data).slice(0, 5);
-
     return (
-        <div className='MemoizedSideDisplay'>
-            {keys.map((item, index) => (
-                <div key={item}>
-                    {data[item]}
-                </div>
-            ))}
-        </div>
+        <div className='memoizedSideDisplay'>memo</div>
     );
 }
 

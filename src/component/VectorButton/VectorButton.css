@@ -6,6 +6,7 @@
     border: unset;
     border-radius: 10%;
     gap: 10px;
-    width: fit-content;
+    width: max-content;
+    height: max-content;
     cursor: pointer;
 }

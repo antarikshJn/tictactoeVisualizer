@@ -12,7 +12,7 @@ import {
 } from "react-icons/im";
 
 
-const VectorButton = ({ title, background, direction, onClickHandler }) => {
+const VectorButton = ({ title, background, color, direction, onClickHandler }) => {
     const arrowIcons = {
         up: ImArrowUp2,
         down: ImArrowDown2,
@@ -27,7 +27,7 @@ const VectorButton = ({ title, background, direction, onClickHandler }) => {
     const ArrowIcon = arrowIcons[direction];
 
     return (
-        <div className='vectorButton' style={{ background: background }} onClick={onClickHandler}>
+        <div className='vectorButton' style={{ background: background, color: color }} onClick={onClickHandler}>
             <b>{title}</b>
             <ArrowIcon />
         </div>
