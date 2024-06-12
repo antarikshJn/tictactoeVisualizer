@@ -1,0 +1,11 @@
+.vectorButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    border: unset;
+    border-radius: 10%;
+    gap: 10px;
+    width: fit-content;
+    cursor: pointer;
+}

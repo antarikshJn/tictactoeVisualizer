@@ -1,5 +1,8 @@
 .board-turnBox {
     width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .row {
@@ -21,7 +24,6 @@
 
 .turnsBar {
     display: flex;
-    justify-content: space-between;
 }
 
 .turnBox {

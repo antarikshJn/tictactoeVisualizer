@@ -1,0 +1,13 @@
+.gameScreen {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #858585;
+    padding: 1em;
+}
+
+.heroScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
