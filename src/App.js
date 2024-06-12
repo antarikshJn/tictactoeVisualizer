@@ -1,9 +1,12 @@
 import React from 'react'
 import Board from './component/Board';
+import Game from './component/TicTacToe/Game';
 
 const App = () => {
     return (
-        <Board />
+        // <Board />
+        // <NewBoard board={[]} />
+        <Game />
     )
 }
 
