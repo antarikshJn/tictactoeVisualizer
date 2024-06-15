@@ -1,17 +1,48 @@
+.player-board-scoreBar {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.player {
+    width: max-content;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: x-small;
+}
+
+.scoreBar table {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    border-radius: 10px;
+    font-size: x-small;
+    width: 100%;
+}
+
+.scoreBar table tr {
+    display: flex;
+}
+
+.scoreBar table td {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
 .boardParent {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    /* justify-content: center; */
     align-items: center;
-    border-bottom: 1px solid black;
 }
 
 .childBoard {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
-    /* align-items: center; */
+    padding: 1em;
+    border: 1px solid black;
     border-collapse: collapse;
 }
 

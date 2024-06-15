@@ -32,40 +32,41 @@ export const checkWin = (boardInstance) => {
 export const minimax = (newBoard, player, movesCount, memo) => {
     let key = createKey(newBoard, player);
 
-    if (memo[key]) {
-        const returnObj = {
-            record: {
-                board: memo[key].record.board,
-                memo: true,
-                key: key,
-            },
-            bestMove: memo[key].bestMove,
-        }
-        return returnObj;
+    const BoardChildObj = {
+        board: structuredClone(newBoard),
+        children: [],
+        key: key,
+        bestMove: {
+            childIndex: null,
+            index: null,
+            score: null,
+        },
+        memo: false,
+        player: player,
+        winner: null,
     }
 
-    const BoardChildObj = {
-        record: {
-            board: structuredClone(newBoard),
-            Children: [],
-            key: key,
-        },
-        bestMove: {},
-        memo: false,
+    if (memo[key]) {
+        BoardChildObj.memo = true;
+        BoardChildObj.bestMove = memo[key].bestMove;
+        return BoardChildObj;
     }
 
     var availSpots = emptySquares(newBoard);
 
     const winner = checkWin(newBoard);
     if (winner === "X") {
+        BoardChildObj.winner = "X Won";
         BoardChildObj.bestMove.score = -10;
         return BoardChildObj;
     }
     else if (winner === "O") {
+        BoardChildObj.winner = "O Won";
         BoardChildObj.bestMove.score = 10;
         return BoardChildObj;
     } else if (availSpots.length === 0) {
-        BoardChildObj.bestMove.score = 10;
+        BoardChildObj.winner = "It's a Draw";
+        BoardChildObj.bestMove.score = 0;
         return BoardChildObj;
     }
 
@@ -77,11 +78,11 @@ export const minimax = (newBoard, player, movesCount, memo) => {
 
         if (player === "O") {
             var result = minimax(structuredClone(newBoard), "X", movesCount, memo);
-            BoardChildObj.record.Children.push(result.record);
+            BoardChildObj.children.push(result);
             move.score = result.bestMove.score;
         } else {
             var result = minimax(structuredClone(newBoard), "O", movesCount, memo);
-            BoardChildObj.record.Children.push(result.record);
+            BoardChildObj.children.push(result);
             move.score = result.bestMove.score;
         }
 
@@ -109,7 +110,12 @@ export const minimax = (newBoard, player, movesCount, memo) => {
         }
     }
     BoardChildObj.bestMove = moves[bestMove];
-    return memo[key] = BoardChildObj;
+    BoardChildObj.bestMove.childIndex = bestMove;
+    memo[key] = {
+        key: BoardChildObj.key,
+        bestMove: BoardChildObj.bestMove,
+    }
+    return BoardChildObj;
 }
 
 const createKey = (newBoard, player) => {

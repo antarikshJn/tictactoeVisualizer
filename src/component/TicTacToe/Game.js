@@ -22,7 +22,9 @@ const Game = () => {
             const newBoard = structuredClone(board);
             let tempMemo = {}
             let bestcinerio = minimax(newBoard, "O", movesCount.current, tempMemo);
+            console.log(tempMemo);
             setMemo(tempMemo);
+            console.log(bestcinerio);
             setPRocess(bestcinerio);
             markChoice(bestcinerio.bestMove.index[0], bestcinerio.bestMove.index[1], turn);
         }
@@ -54,12 +56,12 @@ const Game = () => {
                     <VectorButton
                         title={"Visualize"}
                         background={"#fbe196"}
-                        color={"white"}
+                        color={"black"}
                         direction="down" />
                 </div>
             </div>
             <div className='visualizer-memo'>
-                <BoardTreeVisualizer />
+                <BoardTreeVisualizer root={process} />
                 <MemoizedSideDisplay />
             </div>
         </div>
