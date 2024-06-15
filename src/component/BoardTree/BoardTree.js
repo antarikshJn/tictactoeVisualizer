@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ImCross, ImRadioUnchecked } from "react-icons/im";
 import "./BoardTree.css";
 
-const BoardTree = ({ root, showChildStateeArray }) => {
+const BoardTree = ({ root, showChildStateeArray, viewAll }) => {
     const [showChild, setShowChild] = useState(false);
 
     useEffect(() => {
@@ -59,12 +59,13 @@ const BoardTree = ({ root, showChildStateeArray }) => {
                     </table>
                 </div>
             </div>
-            {!root.winner && !root.memo && showChild &&
+            {!root.winner && !root.memo && (viewAll || showChild) &&
                 <div className='childBoard'>
                     {root.children?.map((child, index) => {
                         return < BoardTree
                             root={child}
-                            showChildStateeArray={showChildStateeArray} />
+                            showChildStateeArray={showChildStateeArray}
+                            viewAll={viewAll} />
                     })}
                 </div>
             }

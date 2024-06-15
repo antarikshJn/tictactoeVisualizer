@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./BoardTreeVisualizer.css";
 
 import VisualizerNavBar from '../VisualizerNavbar';
 import BoardTree from '../BoardTree/BoardTree';
 const BoardTreeVisualizer = ({ root }) => {
+
+    const [viewAll, setViewAll] = useState(false);
 
     const showChildStateeArray = useRef([]);
     const showChildIndex = useRef(0);
@@ -15,11 +17,7 @@ const BoardTreeVisualizer = ({ root }) => {
     }
 
     const fullViewFunction = () => {
-        while (showChildIndex.current < showChildStateeArray.current.length) {
-            const setShowChild = showChildStateeArray.current[showChildIndex.current];
-            setShowChild(true);
-            showChildIndex.current++;
-        }
+        setViewAll(true);
     }
 
     return (
@@ -32,6 +30,7 @@ const BoardTreeVisualizer = ({ root }) => {
                     <BoardTree
                         root={root}
                         showChildStateeArray={showChildStateeArray}
+                        viewAll={viewAll}
                     />
                 </div>
             </div>
