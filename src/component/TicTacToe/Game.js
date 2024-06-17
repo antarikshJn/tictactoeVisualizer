@@ -3,6 +3,7 @@ import NewBoard from '../NewBoard';
 import "./Game.css";
 import { checkWin, minimax } from './Game.helper';
 import ticTacToeImage from "../../../public/TicTacToeVisualizer.png"
+
 import VectorButton from '../VectorButton';
 import BoardTreeVisualizer from '../BoardTreeVisualizer';
 import MemoizedSideDisplay from '../MemoizedSideDisplay/MemoizedSideDisplay';
@@ -58,13 +59,18 @@ const Game = () => {
                         background={"#fbe196"}
                         color={"black"}
                         direction="down" />
+                    <VectorButton
+                        title={"Visualize"}
+                        background={"#fbe196"}
+                        color={"black"}
+                        direction="down" />
                 </div>
             </div>
             <div className='visualizer-memo'>
                 <BoardTreeVisualizer root={process} />
                 <MemoizedSideDisplay />
             </div>
-        </div>
+        </div >
     )
 }
 

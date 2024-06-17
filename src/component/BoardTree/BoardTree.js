@@ -33,7 +33,7 @@ const BoardTree = ({ root, showChildStateeArray, viewAll }) => {
                     })}
                 </div>
                 <div className='scoreBar'>
-                    <table>
+                    {/* <table>
                         {root.memo ?
                             <tr>
                                 <td>
@@ -56,7 +56,7 @@ const BoardTree = ({ root, showChildStateeArray, viewAll }) => {
                                     })}
                                 </tr>
                         }
-                    </table>
+                    </table> */}
                 </div>
             </div>
             {!root.winner && !root.memo && (viewAll || showChild) &&

@@ -17,15 +17,16 @@ const BoardTreeVisualizer = ({ root }) => {
     }
 
     const fullViewFunction = () => {
-        setViewAll(true);
+        setViewAll(!viewAll);
     }
 
     return (
         <>
             <div className='boardTreeVisualizer'>
-                <button onClick={func}>Next</button>
-                <button onClick={fullViewFunction}>View All</button>
-                {/* <VisualizerNavBar /> */}
+                <VisualizerNavBar
+                    nextFunc={func}
+                    viewFullFunc={fullViewFunction}
+                />
                 <div className='boardTree'>
                     <BoardTree
                         root={root}

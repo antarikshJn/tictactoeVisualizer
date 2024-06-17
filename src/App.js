@@ -7,6 +7,7 @@ const App = () => {
         // <Board />
         // <NewBoard board={[]} />
         <Game />
+
     )
 }
 

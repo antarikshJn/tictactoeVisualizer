@@ -3,7 +3,7 @@ import "./VisualizerNavBar.css";
 import VectorButton from '../VectorButton';
 
 
-const VisualizerNavBar = () => {
+const VisualizerNavBar = ({ gameFunc, viewFullFunc, nextFunc }) => {
     return (
         <div className='visualizerNavBar'>
             <VectorButton
@@ -11,6 +11,7 @@ const VisualizerNavBar = () => {
                 background={"#fbe196"}
                 color="black"
                 direction="up"
+                onClickHandler={gameFunc}
             />
             <div className='ProceedButtons'>
                 <VectorButton
@@ -18,12 +19,14 @@ const VisualizerNavBar = () => {
                     background={"#f2a598"}
                     color="black"
                     direction="down"
+                    onClickHandler={viewFullFunc}
                 />
                 <VectorButton
                     title={"Next"}
                     background={"#f14e28"}
                     color="white"
                     direction="right"
+                    onClickHandler={nextFunc}
                 />
             </div>
         </div>
